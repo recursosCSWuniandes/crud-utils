@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.crudutils;
-
+package co.edu.uniandes.csw.crudutils.entities;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 /**
  *
  * @author jd.patino10
  */
-public abstract class SuperClass {
+@MappedSuperclass 
+public abstract class BaseEntity {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String name;
 
