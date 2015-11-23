@@ -34,6 +34,11 @@ public abstract class CrudPersistence<T> {
         return em.find(entityClass, id);
     }
 
+    public List<T> findAll() {
+        Query q = em.createQuery("select u from " + entityClass.getSimpleName() + " u");
+        return q.getResultList();
+    }
+
     public List<T> findAll(Integer page, Integer maxRecords) {
         Query q = em.createQuery("select u from " + entityClass.getSimpleName() + " u");
         if (page != null && maxRecords != null) {
@@ -49,9 +54,9 @@ public abstract class CrudPersistence<T> {
 
     public <V> List<V> executeListNamedQuery(String name, Map<String, Object> params) {
         Query q = em.createNamedQuery(name);
-        for (Map.Entry<String, Object> entry : params.entrySet()) {
+        params.entrySet().stream().forEach((entry) -> {
             q.setParameter(entry.getKey(), entry.getValue());
-        }
+        });
         return q.getResultList();
     }
 
@@ -61,15 +66,25 @@ public abstract class CrudPersistence<T> {
 
     public <V> V executeSingleNamedQuery(String name, Map<String, Object> params) {
         Query q = em.createNamedQuery(name);
-        for (Map.Entry<String, Object> entry : params.entrySet()) {
+        params.entrySet().stream().forEach((entry) -> {
             q.setParameter(entry.getKey(), entry.getValue());
-        }
+        });
         return (V) q.getSingleResult();
     }
 
     public List<T> findByName(String name) {
         Query q = em.createQuery("select u from " + entityClass.getSimpleName() + " u where u.name like :name");
         q.setParameter("name", "%" + name + "%");
+        return q.getResultList();
+    }
+
+    public List<T> findByName(String name, Integer page, Integer maxRecords) {
+        Query q = em.createQuery("select u from " + entityClass.getSimpleName() + " u where u.name like :name");
+        q.setParameter("name", "%" + name + "%");
+        if (page != null && maxRecords != null) {
+            q.setFirstResult((page - 1) * maxRecords);
+            q.setMaxResults(maxRecords);
+        }
         return q.getResultList();
     }
 }
