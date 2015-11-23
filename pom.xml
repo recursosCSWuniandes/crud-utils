@@ -16,6 +16,7 @@
         </snapshotRepository>
     </distributionManagement>
     <properties>
+        <sonar.host.url>http://157.253.238.75:9000/</sonar.host.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
