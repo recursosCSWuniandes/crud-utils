@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.crud.spi.entity;
+import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,8 +13,8 @@ import javax.persistence.MappedSuperclass;
  *
  * @author jd.patino10
  */
-@MappedSuperclass 
-public abstract class BaseEntity {
+@MappedSuperclass
+public abstract class BaseEntity implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -34,5 +35,5 @@ public abstract class BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
-    
+
 }
