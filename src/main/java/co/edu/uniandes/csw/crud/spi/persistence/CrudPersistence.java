@@ -54,9 +54,9 @@ public abstract class CrudPersistence<T> {
 
     public <V> List<V> executeListNamedQuery(String name, Map<String, Object> params) {
         Query q = em.createNamedQuery(name);
-        params.entrySet().stream().forEach((entry) -> {
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
             q.setParameter(entry.getKey(), entry.getValue());
-        });
+        }
         return q.getResultList();
     }
 
@@ -66,9 +66,9 @@ public abstract class CrudPersistence<T> {
 
     public <V> V executeSingleNamedQuery(String name, Map<String, Object> params) {
         Query q = em.createNamedQuery(name);
-        params.entrySet().stream().forEach((entry) -> {
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
             q.setParameter(entry.getKey(), entry.getValue());
-        });
+        }
         return (V) q.getSingleResult();
     }
 
