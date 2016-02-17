@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>co.edu.uniandes.csw</groupId>
     <artifactId>crud-utils</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
     <name>CrudUtils</name>
     <packaging>jar</packaging>
     <distributionManagement>

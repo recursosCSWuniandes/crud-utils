@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.Random;
 import uk.co.jemos.podam.common.AttributeStrategy;
 
+/**
+ * Strategy to generate random Date instances compatible with DerbyDB Date fields
+ * @author af.esguerra10
+ */
 public class DateStrategy implements AttributeStrategy<Date> {
 
     @Override
